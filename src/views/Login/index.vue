@@ -7,7 +7,7 @@
       :options="{
         background: {
           color: {
-            value: '#EFEFEF',
+            value: '#ffffff',
           },
         },
         fpsLimit: 60,
@@ -42,10 +42,10 @@
         },
         particles: {
           color: {
-            value: '#708090',
+            value: '#0a504b',
           },
           links: {
-            color: '#708090',
+            color: '#0a504b',
             distance: 150,
             enable: true,
             opacity: 0.5,
@@ -209,14 +209,14 @@ export default {
         if (valid) {
 
           console.log(' submit!!');
-          this.$axios.post('/api/admins/login?username=' + this.loginForm.administrator_tel + '&password=' + this.loginForm.administrator_psd)
+          this.$axios.post('/api/admins/login?administrator_tel=' + this.loginForm.administrator_tel + '&administrator_psd=' + this.loginForm.administrator_psd)
             .then(res => {
               this.$message({
                 type: 'success',
-                message: '用户登陆成功'
+                message: '管理员登陆成功'
               })
               console.log(res);
-              window.sessionStorage.setItem("token", res.data.token);
+              localStorage.setItem("Token", "Bearer " + res.data.token);
               this.$router.push('/home');
             })
             .catch(function (error) {
@@ -225,6 +225,10 @@ export default {
         }
         else {
           console.log('error submit!!');
+          this.$message({
+            type: 'warning',
+            message: '管理员登陆失败'
+          })
           return false;
         }
       });
@@ -259,20 +263,20 @@ export default {
 .login_box {
   display: flex;
   justify-content: center; /* 水平居中 */
-  background-color: #9d9e9ed8;
+  background-color: #76aaaa5e;
   width: 20rem;
   height: 15rem;
   border-radius: 5px; //圆角
-  box-shadow: 0 0 10px 0 rgba(41, 41, 41, 0.911);
+  box-shadow: 0 0 10px 0 #337e7eea;
 
   .logo_box {
-    $back: #c1c6ccd2;
+    $back: #70f8cfd2;
     height: 70px;
     width: 70px;
     border-radius: 50%;
     border: 5px solid #edf0f3ed;
     position: absolute;
-    box-shadow: 0 0 10px rgba(179, 181, 182, 0.911);
+    box-shadow: 0 0 10px 0 #2f7e7eea;
     transform: translate(0, -50%);
     background-color: $back;
     img {

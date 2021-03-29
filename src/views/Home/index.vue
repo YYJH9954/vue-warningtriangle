@@ -17,10 +17,6 @@ export default {
       this.$axios({
         url: "/api/getAdmin",
         method: 'get',//method默认是get请求
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-
       }).then(function (res) {
         console.log(res)
         // axios会对我们请求来的结果进行再一次的封装（ 让安全性提高 ）
@@ -30,7 +26,7 @@ export default {
     },
     //退出
     logout () {
-      window.sessionStorage.clear()
+      localStorage.clear()
       this.$router.push("/login")
     },
   }

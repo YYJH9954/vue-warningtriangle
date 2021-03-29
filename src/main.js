@@ -20,7 +20,6 @@ const app = createApp(App)
 
 // //配置请求根路径
 app.config.globalProperties.$axios = axios
-// axios.defaults.baseURL = "http://localhost:3000/"
 
 app
   .use(ElementPlus)
@@ -29,3 +28,19 @@ app
   .use(particles)
   .use(VueAxios, axios)
   .mount('#app')
+
+//axios请求拦截
+axios.interceptors.request.use(config => {
+  if (localStorage.Token) {
+    config.headers['Authorization'] = localStorage.Token
+  }
+  return config
+})
+
+//axios响应拦截
+axios.interceptors.response.use(res => {
+  return res
+}), err => {
+  console.log(err.response)
+  Message.error(err.response.data)
+}

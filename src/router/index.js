@@ -1,19 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home/index.vue'
 import Login from '../views/Login/index.vue'
+import Admin from '../views/Admin/index.vue'
+import UserMessage from '../views/User/UserMessage.vue'
+import UserInfo from '../views/User/UserInfo.vue'
+import Rights from '../components/power/rights.vue'
 
 const routes = [
-  {
-    //方法一
-    path: '/home',
-    name: "首页",
-    component: Home,
 
-  },
   {
     //方法一_重定义自动跳转登陆页面
     path: '/',
-    redirect: '/login',
+    redirect: '/login',//打开页面就加载
 
   },
   {
@@ -24,6 +22,21 @@ const routes = [
   },
 
   {
+    //菜单
+    path: '/bar',
+    name: "导航",
+    component: () => import('../views/Bar/index.vue'),
+    redirect: '/home',
+    children: [
+      { path: "/home", component: Home },
+      { path: "/userMessage", component: UserMessage },
+      { path: "/userInfo", component: UserInfo },
+      { path: "/admin", component: Admin },
+      { path: "/Rights", component: Rights }
+    ]
+
+  },
+  {
     //方法二
     path: '/about',
     name: "关于",
@@ -31,7 +44,7 @@ const routes = [
   },
   {
     path: '/404',
-    component: () => import('../views/404.vue'),
+    component: () => import('../views/404.vue'),//懒加载模式，点击页面才加载，优化进入效果
 
   },
 
@@ -52,7 +65,7 @@ router.beforeEach((to, form, next) => {
   //next 函数，表示放行
   if (to.path == '/login') return next();
   //获取token
-  const tokenStr = window.sessionStorage.getItem('token');
+  const tokenStr = localStorage.getItem('Token');
   if (!tokenStr) return next('/login')
   next()
 })
