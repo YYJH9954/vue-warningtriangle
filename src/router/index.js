@@ -4,6 +4,7 @@ import Login from '../views/Login/index.vue'
 import Admin from '../views/Admin/index.vue'
 import UserMessage from '../views/User/UserMessage.vue'
 import UserInfo from '../views/User/UserInfo.vue'
+import WarningTriangle from '../views/WarningTriangle/index.vue'
 import Rights from '../components/power/rights.vue'
 
 const routes = [
@@ -32,7 +33,8 @@ const routes = [
       { path: "/userMessage", component: UserMessage },
       { path: "/userInfo", component: UserInfo },
       { path: "/admin", component: Admin },
-      { path: "/Rights", component: Rights }
+      { path: "/rights", component: Rights },
+      { path: "/warningTriangle", component: WarningTriangle }
     ]
 
   },

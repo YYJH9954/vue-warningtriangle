@@ -54,8 +54,21 @@ x<template>
               <el-menu-item index="/home">系统简介</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <!-- 一级菜单 -->
           <el-submenu index="2">
+            <template #title>
+              <i class="el-icon-s-promotion"></i>
+              <span>硬件管理</span>
+            </template>
+            <el-menu-item-group>
+              <template #title>硬件管理</template>
+              <el-menu-item index="/warningTriangle"
+                >三角警告牌列表</el-menu-item
+              >
+            </el-menu-item-group>
+          </el-submenu>
+
+          <!-- 一级菜单 -->
+          <el-submenu index="3">
             <!-- 一级菜单模板区域 -->
             <template #title>
               <!-- 图标 -->
@@ -70,7 +83,7 @@ x<template>
               <el-menu-item index="/userInfo">用户详情</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-submenu index="3">
+          <el-submenu index="4">
             <!-- 一级菜单模板区域 -->
             <template #title>
               <!-- 图标 -->
@@ -82,6 +95,16 @@ x<template>
             <el-menu-item-group>
               <template #title>管理员管理</template>
               <el-menu-item index="/admin">管理员详情</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="5">
+            <template #title>
+              <i class="el-icon-s-check"></i>
+              <span>权限列表</span>
+            </template>
+            <el-menu-item-group>
+              <template #title>权限列表</template>
+              <el-menu-item index="/rights">权限列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

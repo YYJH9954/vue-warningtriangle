@@ -37,6 +37,25 @@
       <el-table-column prop="user_psd" label="密码"> </el-table-column>
       <el-table-column prop="user_tel" label="手机号"> </el-table-column>
       <el-table-column prop="user_email" label="邮箱"> </el-table-column>
+      <el-table-column label="操作" width="200px">
+        <template v-slot="scope">
+          <!-- 修改按钮 -->
+          <el-button
+            type="primary"
+            size="mini"
+            icon="el-icon-edit"
+            @click="editAdminDialog(scope.row)"
+          ></el-button>
+          <!-- 删除按钮 -->
+
+          <el-button
+            type="danger"
+            size="mini"
+            icon="el-icon-delete"
+            @click="deleteAdmin(scope.row.administrator_tel)"
+          ></el-button>
+        </template>
+      </el-table-column>
       <!-- <el-table-column prop="user_birth" label="生日"> </el-table-column>
       <el-table-column prop="user_sex" label="性别"> </el-table-column>
       <el-table-column prop="user_job" label="职业"> </el-table-column>
