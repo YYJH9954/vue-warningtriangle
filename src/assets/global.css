@@ -23,3 +23,99 @@ body,
 .el-table-colum {
   right: -1px; /*覆盖原有样式，解决表头最右侧有1px的间隙 */
 }
+.demo-table-expand {
+  font-size: 20px;
+}
+.demo-table-expand label {
+  width: 90px;
+  color: #99a9bf;
+}
+.demo-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 40%;
+}
+.demo-table-expand .el-form-item-other {
+  width: 20%;
+}
+
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+.home .num {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+.home .num .icon {
+  font-size: 40px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  color: #fff;
+  background-color: #37a9c5;
+}
+.home .num .detail {
+  width: 150px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.home .num .detail .number {
+  text-align: center;
+  height: 40px;
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+.home .num .detail .txt {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 0px;
+}
+.home .self {
+  margin-left: 20px;
+}
+.home .self .demonstration {
+  font-size: 20px;
+}
+.home .graph {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.home .user {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #3d3d3ca1;
+}
+.home .logoinfo p {
+  line-height: 28px;
+  font-size: 14px;
+  color: #999;
+}
+.home .user img {
+  width: 100px;
+  height: 100px;
+  margin-right: 40px;
+  border-radius: 5%;
+}
+.home .user img {
+  width: 100px;
+  height: 100px;
+  margin-right: 40px;
+  border-radius: 5%;
+}
+.home .user .userinfo .name {
+  font-size: 32px;
+  margin-bottom: 10px;
+}

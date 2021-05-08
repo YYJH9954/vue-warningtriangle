@@ -15,12 +15,16 @@ import './assets/iconfont/icon.css'
 //引入axios
 import VueAxios from 'vue-axios'
 import axios from 'axios'
+//引入echarts
+import * as echarts from 'echarts'
+
 
 const app = createApp(App)
 
 // //配置请求根路径
 app.config.globalProperties.$axios = axios
-
+//引入echarts
+app.config.globalProperties.$echarts = echarts
 app
   .use(ElementPlus)
   .use(store)
@@ -28,7 +32,6 @@ app
   .use(particles)
   .use(VueAxios, axios)
   .mount('#app')
-
 //axios请求拦截
 axios.interceptors.request.use(config => {
   if (localStorage.Token) {

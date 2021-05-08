@@ -83,63 +83,69 @@
         detectRetina: true,
       }"
     />
-    <div class="login_box">
-      <!-- 头像 -->
-      <div class="logo_box">
-        <img src="../../assets/logo.gif" />
+    <div>
+      <div class="login_title">
+        <img src="../../assets/img/Top_logo.png" alt="" />
+        <span>智能三角牌后台管理系统</span>
       </div>
-      <!-- 表单 -->
-      <el-form
-        ref="loginFormRef"
-        :model="loginForm"
-        label-width="0px"
-        class="login_form"
-        status-icon
-        :rules="loginFormRules"
-        size="medium"
-      >
-        <!-- //用户名——手机号 -->
-        <!-- prop=""指定名字规则验证 -->
-        <el-form-item prop="administrator_tel">
-          <el-input
-            placeholder="请输入手机号"
-            v-model="loginForm.administrator_tel"
-            clearable
-          >
-            <template #prefix>
-              <span class="svg-container">
-                <svg class="icon" aria-hidden="true">
-                  <use xlink:href="#icon-administrater1"></use>
-                </svg>
-              </span>
-            </template>
-          </el-input>
-        </el-form-item>
-        <!-- 密码 -->
-        <el-form-item prop="administrator_psd">
-          <el-input
-            v-model="loginForm.administrator_psd"
-            placeholder="请输入密码"
-            show-password
-          >
-            <template #prefix>
-              <span class="svg-container">
-                <svg class="icon" aria-hidden="true">
-                  <use xlink:href="#icon-password"></use>
-                </svg>
-              </span>
-            </template>
-          </el-input>
-        </el-form-item>
+      <div class="login_box">
+        <!-- 头像 -->
+        <div class="logo_box">
+          <img src="../../assets/logo.gif" />
+        </div>
+        <!-- 表单 -->
+        <el-form
+          ref="loginFormRef"
+          :model="loginForm"
+          label-width="0px"
+          class="login_form"
+          status-icon
+          :rules="loginFormRules"
+          size="medium"
+        >
+          <!-- //用户名——手机号 -->
+          <!-- prop=""指定名字规则验证 -->
+          <el-form-item prop="administrator_tel">
+            <el-input
+              placeholder="请输入手机号"
+              v-model="loginForm.administrator_tel"
+              clearable
+            >
+              <template #prefix>
+                <span class="svg-container">
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-administrater1"></use>
+                  </svg>
+                </span>
+              </template>
+            </el-input>
+          </el-form-item>
+          <!-- 密码 -->
+          <el-form-item prop="administrator_psd">
+            <el-input
+              v-model="loginForm.administrator_psd"
+              placeholder="请输入密码"
+              show-password
+            >
+              <template #prefix>
+                <span class="svg-container">
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-password"></use>
+                  </svg>
+                </span>
+              </template>
+            </el-input>
+          </el-form-item>
 
-        <!-- 按钮 -->
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('loginFormRef')"
-            >提交</el-button
-          >
-          <el-button @click="resetForm('loginFormRef')">重置</el-button>
-        </el-form-item>
-      </el-form>
+          <!-- 按钮 -->
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('loginFormRef')"
+              >提交</el-button
+            >
+            <el-button @click="resetForm('loginFormRef')">重置</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
     </div>
   </div>
 </template>
@@ -246,6 +252,22 @@ export default {
 
 
 <style lang="scss" scoped>
+.login_title {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  padding-bottom: 80px; /* 垂直居中 */
+  img {
+    width: 3rem;
+    height: 2.5rem;
+  }
+  span {
+    margin-left: 1rem;
+    font-size: 30px;
+    color: #000000;
+    text-shadow: 0px 1px 0px rgb(88, 88, 88),
+      0px 2px 0px rgba(151, 150, 150, 0.74), 0px 3px 0px #777;
+  }
+}
 .login_container {
   display: flex;
   align-items: center; /* 垂直居中 */

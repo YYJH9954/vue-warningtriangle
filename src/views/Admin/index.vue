@@ -45,9 +45,9 @@
     >
       <!-- 展开列 -->
       <el-table-column type="expand" label="#">
-        <template>
+        <template v-slot="scope">
           <el-col>
-            <el-tag v-for="item in this.children" :key="item.id">
+            <el-tag v-for="(item, index) in this.children" :key="item.right_id">
               {{ item.right_name }}
             </el-tag>
           </el-col>
@@ -272,7 +272,7 @@ export default {
     var validatePass2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入密码'));
-      } else if (value !== this.addAdminForm.checkPsd) {
+      } else if (value !== this.addAdminForm.user_psd) {
         callback(new Error('两次输入密码不一致!'));
       } else {
         callback();
@@ -344,7 +344,7 @@ export default {
       addAdminFormRules: {
         administrator_name: [
           { required: true, message: '请输入管理员名称', trigger: 'blur' },
-          { min: 2, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
         administrator_psd: [
           { required: true, validator: validatePass, trigger: 'blur' },
@@ -390,7 +390,6 @@ export default {
   methods: {
     // 得到管理员信息
     getAdminList () {
-      console.log(this.searchInfo)
       this.$axios({
         url: "/api/getAdmin?search=" + this.searchInfo,
         method: 'get',//method默认是get请求
@@ -425,6 +424,7 @@ export default {
               this.children = ele.children;
             }
           })
+          console.log(this.children)
         }
       } else {//说明收起了
         that.expands = []
@@ -432,13 +432,15 @@ export default {
     },
     //点击按钮收缩
     toogleExpand (row) {
+      // console.log(row)
       let $table = this.$refs.adminlistRef;
       this.adminlist.map((item) => {
-        console.log(item)
+        // console.log(item)
         if (row.administrator_id != item.administrator_id) {
           $table.toggleRowExpansion(item, false)
         }
       })
+      // console.log(this.adminlist)
       $table.toggleRowExpansion(row)
     },
     //监听添加管理员对话框的关闭事件

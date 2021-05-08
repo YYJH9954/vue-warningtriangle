@@ -14,7 +14,9 @@ x<template>
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>个人中心</el-dropdown-item>
+              <el-dropdown-item @click="AdminInfoDialog = true"
+                >个人中心</el-dropdown-item
+              >
               <el-dropdown-item divided @click="logout">退出</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -50,8 +52,8 @@ x<template>
               <span>系统</span>
             </template>
             <el-menu-item-group>
-              <template #title>系统简介</template>
-              <el-menu-item index="/home">系统简介</el-menu-item>
+              <template #title>系统主页</template>
+              <el-menu-item index="/home">系统主页</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">
@@ -115,21 +117,119 @@ x<template>
       </el-main>
     </el-container>
   </el-container>
+
+  <!-- 管理员个人信息 -->
+  <el-dialog
+    title="管理员信息表"
+    v-model="AdminInfoDialog"
+    @close="AdminInfoClosed"
+  >
+    <!-- 内容主体区域 -->
+    <el-form :model="AdminInfoForm">
+      <el-form-item label="管理员头像" :label-width="formLabelWidth">
+        <img :src="userImg" alt="" />
+      </el-form-item>
+      <el-form-item label="管理员名称" :label-width="formLabelWidth">
+        <el-input
+          v-model="AdminInfoForm.administrator_name"
+          disabled
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="密码" :label-width="formLabelWidth">
+        <el-input
+          v-model="AdminInfoForm.administrator_psd"
+          show-password
+          disabled
+        >
+        </el-input>
+      </el-form-item>
+      <el-form-item label="手机号" :label-width="formLabelWidth">
+        <el-input v-model="AdminInfoForm.administrator_tel" disabled></el-input>
+      </el-form-item>
+      <el-form-item
+        label="邮箱"
+        :label-width="formLabelWidth"
+        prop="administrator_email"
+      >
+        <el-input
+          v-model="AdminInfoForm.administrator_email"
+          disabled
+        ></el-input>
+      </el-form-item>
+      <el-form-item
+        label="创建时间"
+        :label-width="formLabelWidth"
+        prop="administrator_createdtime"
+      >
+        <el-tag type="success"> 2021-03-28 23:59:59</el-tag>
+      </el-form-item>
+      <el-form-item
+        label="身份"
+        :label-width="formLabelWidth"
+        prop="administrator_right"
+      >
+        <el-tag type="warning"> 超级管理员</el-tag>
+      </el-form-item>
+      <el-form-item
+        label="管理权限"
+        :label-width="formLabelWidth"
+        prop="administrator_right"
+      >
+        <el-tag>修改管理员数据</el-tag>
+        <el-tag>添加管理员数据</el-tag>
+        <el-tag>删除管理员数据</el-tag>
+        <el-tag>修改三角警告牌信息</el-tag>
+        <el-tag>删除三角警告牌信息</el-tag>
+        <el-tag>添加三角警告牌信息</el-tag>
+        <el-tag>修改用户数据</el-tag>
+        <el-tag>删除用户数据</el-tag>
+        <el-tag>添加用户数据</el-tag>
+      </el-form-item>
+    </el-form>
+  </el-dialog>
 </template>
 
 <script>
 export default {
   data () {
+
     return {
+      userImg: require('../../assets/logo.gif'),
+      formLabelWidth: "100px",
+      AdminInfoForm: {
+        administrator_name: '',
+        administrator_psd: '',
+        administrator_tel: '',
+        administrator_email: '',
+        administrator_right: '',
+        administrator_createdtime: ''
+      },
+      AdminInfoDialog: false,
+
       userImg: require("../../assets/logo.gif"),
       //是否折叠
       isCollapse: false
     }
   },
+  created () {
+    this.getAdminInfo()
+  },
   methods: {
     //点击按钮切换按钮折叠与展开
     togleCollapse () {
       this.isCollapse = !this.isCollapse
+    },
+    getAdminInfo () {
+      this.$axios({
+        url: "/api/getAdminInfo",
+        method: 'get',//method默认是get请求
+      }).then(res => {
+        this.AdminInfoForm = res.data.list[0]
+        console.log(this.AdminInfoForm)
+      })
+    },
+    AdminInfoClosed () {
+      this.AdminInfoDialog = false
     },
     //退出
     logout () {
